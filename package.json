@@ -10,6 +10,7 @@
     "react-scripts": "5.0.1"
   },
   "devDependencies": {
+    "monaco-editor-webpack-plugin": "^7.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

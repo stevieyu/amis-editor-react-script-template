@@ -1,9 +1,13 @@
+import './mod.js'
+import {__mod__async__load} from './loadMonacoEditor.js'
+
 import { render } from 'react-dom';
 import {Editor} from 'amis-editor';
 
 import amisStyle from '!file-loader!amis/lib/themes/default.css'
 import amisEditorStyle from '!file-loader!amis-editor/dist/style.css'
 
+window.amis.define('monaco-editor', __mod__async__load)
 
 const defaultProps = {
     value: {
