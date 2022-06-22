@@ -1,45 +1,69 @@
-import './mod.js'
-import {__mod__async__load} from './loadMonacoEditor.js'
-
+import {useState} from 'react'
 import { render } from 'react-dom';
-import {Editor} from 'amis-editor';
+import Editor from './editor'
 
-import amisStyle from '!file-loader!amis/lib/themes/default.css'
-import amisEditorStyle from '!file-loader!amis-editor/dist/style.css'
+window._AMIS_ORIGIN = new URL(document.currentScript.src).origin
 
-window.amis.define('monaco-editor', __mod__async__load)
+const iframeMsg = () => {
+  const el = window;
+  let argCb;
+  const MSG_TYPE = 'iframe-message'
 
-const defaultProps = {
-    value: {
-      "type": "page",
-      "title": "xxx",
-      "body": [
-        {
-          "type": "tpl",
-          "tpl": "这是你刚刚新增的页面。",
-          "inline": false
-        }
-      ]
+  const cb = (event) => {
+    if(typeof argCb !== 'function') return;
+    const {data} = event;
+    if(typeof data !== 'object' || data.type !== MSG_TYPE) return;
+    argCb(data.data)
+  }
+
+  return {
+    in: window.self !== window.top,
+    listener(listener){
+      argCb = listener
+      el.addEventListener('message', cb)
     },
-    onChange: () => {
+    unListener(){
+      el.removeEventListener('message', cb)
     },
-    preview: false,
-    autoFocus: true,
-    plugins: []
+    send(message){
+      el.parent.postMessage({
+        type: MSG_TYPE,
+        data: message,
+      }, '*');
+    },
+    iSend(iframe, message){
+      iframe.contentWindow.postMessage({
+        type: MSG_TYPE,
+        data: message,
+      }, '*')
+    }
+  }
 }
 
+function IframeEditor() {
+  const [val, setVal] = useState(null)
 
-const amisEditor = window.amisEditor = (el, props = {}) => {
-  Object.assign(props, defaultProps, props)
-  if(typeof el === 'string') el = document.querySelector(el)
-  return render(<div>
-    <link rel="stylesheet" href={amisStyle}/>
-    <link rel="stylesheet" href={amisEditorStyle}/>
-    <Editor {...props}/>
-  </div>, el);
+  const im = iframeMsg()
+  if(im.in){
+    im.listener((data) => {
+      console.log('child', data);
+      setVal(data)
+    })
+  }
+  const save = (value) => {
+    im.send({
+      ac: 'save',
+      value
+    })
+  }
+  const cancel = () => {
+    im.send({
+      ac: 'cancel'
+    })
+  }
+  return <Editor value={val} onSave={save} onCancel={cancel}/>
 }
 
-const el = document.querySelector('amis-editor')
-if(el) amisEditor(el)
+render(<IframeEditor/>, document.querySelector('#root'));
 
 

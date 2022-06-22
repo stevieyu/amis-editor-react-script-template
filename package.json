@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "amis-editor": "^4.1.0-beta.28",
+    "amis": "^1.10.2",
+    "amis-editor": "^4.1.0-0",
     "axios": "^0.27.2",
     "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "react-scripts": "5.0.1"
+    "react-dom": "^16.14.0"
   },
   "devDependencies": {
-    "monaco-editor-webpack-plugin": "^7.0.1"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

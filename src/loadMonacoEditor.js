@@ -1,3 +1,4 @@
+import './mod.js'
 const {amis} = window
 
 // 这是个特殊的方法，请看考 mod.js 里面的实现。
@@ -8,8 +9,13 @@ export function __mod__async__load(callback) {
     const script = amis.require.loadJs(filterUrl(monacoLoader));
     script.onload = () => onLoad(window.require, callback);
 }
-function __uri(url) {
-    return 'https://aisuda.github.io/amis-editor-demo/n/'+url;
+function __uri(uri) {
+    // let ret = 'https://aisuda.github.io/amis-editor-demo/n/'
+    // let ret = 'https://microsoft.github.io/monaco-editor/node_modules/'
+    // let ret = 'https://cdn.jsdelivr.net/npm/'
+    let ret = 'https://jsdelivr.stevie.top/npm/'
+
+    return ret + uri;
 }
 // 用于发布 sdk 版本的时候替换，因为不确定 sdk 版本怎么部署，而 worker 地址路径不可知。
 // 所以会被 fis3 替换成取相对的代码。
