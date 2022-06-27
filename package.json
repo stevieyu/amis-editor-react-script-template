@@ -16,7 +16,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "serve": "npx -y serve -s build"
+    "serve": "npx -y serve -s build",
+    "surge": "cp build/index.html build/200.html && pnpx surge build amis-editor.surge.stevie.top"
   },
   "eslintConfig": {
     "extends": [

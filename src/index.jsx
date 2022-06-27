@@ -1,63 +1,34 @@
 import {useState} from 'react'
 import { render } from 'react-dom';
 import Editor from './editor'
+import messageEventListener from './utils/messageEventListener'
+
+if (!window.location.port && typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === 'object') {
+  window.__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () {}
+}
+
 
 window._AMIS_ORIGIN = new URL(document.currentScript.src).origin
-
-const iframeMsg = () => {
-  const el = window;
-  let argCb;
-  const MSG_TYPE = 'iframe-message'
-
-  const cb = (event) => {
-    if(typeof argCb !== 'function') return;
-    const {data} = event;
-    if(typeof data !== 'object' || data.type !== MSG_TYPE) return;
-    argCb(data.data)
-  }
-
-  return {
-    in: window.self !== window.top,
-    listener(listener){
-      argCb = listener
-      el.addEventListener('message', cb)
-    },
-    unListener(){
-      el.removeEventListener('message', cb)
-    },
-    send(message){
-      el.parent.postMessage({
-        type: MSG_TYPE,
-        data: message,
-      }, '*');
-    },
-    iSend(iframe, message){
-      iframe.contentWindow.postMessage({
-        type: MSG_TYPE,
-        data: message,
-      }, '*')
-    }
-  }
-}
+const url = new URL(window.location)
 
 function IframeEditor() {
   const [val, setVal] = useState(null)
 
-  const im = iframeMsg()
+  const im = messageEventListener(url.searchParams.get('event_name') || 'amis.editor')
   if(im.in){
-    im.listener((data) => {
+    im.on((data) => {
       console.log('child', data);
       setVal(data)
     })
   }
   const save = (value) => {
-    im.send({
+    im.emit({
       ac: 'save',
       value
     })
   }
   const cancel = () => {
-    im.send({
+    im.emit({
       ac: 'cancel'
     })
   }

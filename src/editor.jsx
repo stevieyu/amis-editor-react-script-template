@@ -10,7 +10,7 @@ import 'amis-editor/dist/style.css'
 
 const defaultValue = {
     "type": "page",
-    "title": "xxx",
+    "title": "默认标题",
     "body": [
         {
             "type": "tpl",
