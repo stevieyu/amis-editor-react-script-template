@@ -8,9 +8,9 @@ function __uri(uri) {
     // let ret = 'https://aisuda.github.io/amis-editor-demo/n/'
     // let ret = 'https://microsoft.github.io/monaco-editor/node_modules/'
     // let ret = 'https://cdn.jsdelivr.net/npm/'
-    let ret = 'https://jsdelivr.stevie.top/npm/'
+    let ret = 'https://cdn.staticfile.org/'
 
-    return ret + uri;
+    return ret + uri.replace('monaco-editor/', 'monaco-editor/0.33.0/');
 }
 const config = {
     'vs/nls': {

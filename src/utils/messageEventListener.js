@@ -1,5 +1,5 @@
 
-export default (type) => {
+export default function messageEventListener(type) {
   const el = window;
   let cbTmp;
 

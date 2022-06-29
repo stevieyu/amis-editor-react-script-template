@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import Editor from './editor'
 import messageEventListener from './utils/messageEventListener'
 
-if (!window.location.port && typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === 'object') {
+if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === 'object') {
   window.__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () {}
 }
 
