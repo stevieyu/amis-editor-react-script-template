@@ -3,8 +3,8 @@ import { render } from 'react-dom';
 import Editor from './editor'
 import messageEventListener from './utils/messageEventListener'
 
-if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === 'object') {
-  window.__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () {}
+window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = {
+  isDisabled: true
 }
 
 
