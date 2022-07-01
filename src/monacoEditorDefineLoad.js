@@ -1,14 +1,16 @@
+import {jsOrigin} from './utils/define'
+
 // $schemaUrl: schemaJsonUrl()
 export function schemaJsonUrl(){
     // return `https://aisuda.github.io/amis-editor-demo/schema.json`
-    return window._AMIS_ORIGIN + '/schema.json'
+    return jsOrigin + '/schema.json'
 }
 
 function __uri(uri) {
     // let ret = 'https://aisuda.github.io/amis-editor-demo/n/'
     // let ret = 'https://microsoft.github.io/monaco-editor/node_modules/'
     // let ret = 'https://cdn.jsdelivr.net/npm/'
-    let ret = 'https://cdn.staticfile.org/'
+    let ret = 'https://cdnjs.loli.net/'
 
     return ret + uri.replace('monaco-editor/', 'monaco-editor/0.33.0/');
 }

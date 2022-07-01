@@ -1,0 +1,1 @@
+export const jsOrigin = new URL(document.currentScript.src).origin

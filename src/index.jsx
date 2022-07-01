@@ -8,7 +8,6 @@ if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === 'object') {
 }
 
 
-window._AMIS_ORIGIN = new URL(document.currentScript.src).origin
 const url = new URL(window.location)
 
 function IframeEditor() {
