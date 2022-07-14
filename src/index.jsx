@@ -3,11 +3,6 @@ import { render } from 'react-dom';
 import Editor from './editor'
 import messageEventListener from './utils/messageEventListener'
 
-window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = {
-  isDisabled: true
-}
-
-
 const url = new URL(window.location)
 
 function IframeEditor() {

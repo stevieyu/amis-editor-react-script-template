@@ -2,10 +2,8 @@ import {useState, useEffect} from 'react'
 import {Editor as AmisEditor} from 'amis-editor';
 import {Button} from 'amis';
 import {schemaJsonUrl} from './monacoEditorDefineLoad.js'
+import './utils/DisabledEditorPlugin.jsx';
 
-// import 'amis/lib/themes/default.css'
-// import 'amis/lib/helper.css'
-// import 'amis/sdk/iconfont.css'
 import 'amis-editor/dist/style.css'
 
 const defaultValue = {
