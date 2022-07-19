@@ -7,12 +7,12 @@ export function schemaJsonUrl(){
 }
 
 function __uri(uri) {
-    // let ret = 'https://aisuda.github.io/amis-editor-demo/n/'
-    // let ret = 'https://microsoft.github.io/monaco-editor/node_modules/'
-    // let ret = 'https://cdn.jsdelivr.net/npm/'
-    let ret = 'https://cdnjs.loli.net/'
+    // let origin = 'https://aisuda.github.io/amis-editor-demo/n/'
+    // let origin = 'https://microsoft.github.io/monaco-editor/node_modules/'
+    // let origin = 'https://cdn.jsdelivr.net/npm/'
+    let origin = 'https://cdnjs.loli.net/ajax/libs/'
 
-    return ret + uri.replace('monaco-editor/', 'monaco-editor/0.33.0/');
+    return origin + uri.replace('monaco-editor/', 'monaco-editor/0.33.0/');
 }
 const config = {
     'vs/nls': {

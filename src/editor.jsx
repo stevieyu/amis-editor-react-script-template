@@ -82,7 +82,7 @@ export default function Editor(props) {
     }
     const editorProps = {...defaultProps, ...state}
     return (
-        <div style={style}>
+        <div style={style} className="amis-scope">
             <Header />
             <AmisEditor {...editorProps}/>
         </div>
