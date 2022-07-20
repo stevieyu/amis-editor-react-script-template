@@ -20,7 +20,7 @@
     "test": "craco test",
     "serve": "npx -y serve -s build",
     "surge": "cp build/index.html build/200.html && pnpx surge build amis-editor.surge.stevie.top",
-    "gh": "cp build/index.html build/404.html && npx -y gh-pages -d build -b gh-pages"
+    "gh": "craco build && cp build/index.html build/404.html && npx -y gh-pages -d build -b gh-pages"
   },
   "eslintConfig": {
     "extends": [
