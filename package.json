@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "amis": "^2.0.0",
-    "amis-editor": "^5.1.0",
+    "amis-editor": "^5.2.0",
     "axios": "^1.0.0-0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
